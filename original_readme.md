@@ -7,11 +7,11 @@
 
 **[英文文档](https://redux-tiles.js.org/)**
 
-Redux is an awesome library to keep state management sane on scale. The problem, though, is that it is toooo verbose, and often you'd feel like you are doing literally the same thing again and again. This library tries to provide minimal abstraction on top of Redux, to allow easy composability, easy async requests, and sane testability.
-It is possible to start using this library [in existing project](https://bloomca.github.io/redux-tiles/advanced/integration.html), adding new functionality gradually.
->**[More about rationale behind this library](http://blog.bloomca.me/2017/06/02/why-i-created-redux-tiles-library.html)**<br>
+Redux是一个非常好的库，可以让状态管理变得清晰。但问题在于它的样板代码写的太冗长了，而且你经常会觉得你一次又一次地做同样的事情。 这个库试图在Redux之上提供最小的抽象，以允许轻松的组合、容易的异步请求和健全的可测试性。可以在[现有项目中](https://bloomca.github.io/redux-tiles/advanced/integration.html)开始使用此库, 并逐步添加新功能。
+
+>**[更多关于这个库背后的基本原理](http://blog.bloomca.me/2017/06/02/why-i-created-redux-tiles-library.html)**<br>
 >
->**[Examples](./examples)**
+>**[实例](./examples)**
 > * [Calculator](./examples/calculator)
 > * [TodoMVC](./examples/todomvc)
 > * [Hacker News API](./examples/hacker-news-api)
