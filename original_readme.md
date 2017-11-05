@@ -17,37 +17,37 @@ Redux是一个非常好的库，可以让状态管理变得清晰。但问题在
 > * [Hacker News API](./examples/hacker-news-api)
 > * [Github API](./examples/github-api)
 
-## Installation
+## 安装
 
-To install latest stable version, run:
+要安装最新的稳定版本，请运行：
 ```shell
 npm install --save redux-tiles
 ```
 
-This package was built with the idea in mind, that people will use it usually using some bundling tool – [Webpack](https://webpack.js.org/), [Browserify](http://browserify.org/) or [Rollup](http://rollupjs.org/). The package itself is written in TypeScript, and therefore provides typings out of the box.
+这个软件包的构思是基于我的这个想法，人们通常会使用一些打包工具 - [Webpack](https://webpack.js.org/), [Browserify](http://browserify.org/) or [Rollup](http://rollupjs.org/)。 该包本身是用TypeScript编写的，并且因此可以提供立即可用的typings。
 
-If you for some reason don't use bundler, you can use UMD builds, which are located in [dist folder](https://unpkg.com/redux-tiles@0.6.1/dist/). Just include it in your page via `script` tag, and then you will have it under `window.ReduxTiles` global variable.
+如果由于某种原因不使用bundler，则可以使用位于[dist文件夹](https://unpkg.com/redux-tiles@0.6.1/dist/)中的UMD版本。 只需在你的页面中通过`script`标签包含它，然后你就可以在window.ReduxTiles全局变量下得到它。
 
 ## TOC:
 
-- [Example of use](#user-content-example-of-use)
-- [Rationale](#user-content-rationale)
-- [Integration API](#user-content-integration-api)
+- [使用示例](#user-content-example-of-use)
+- [基本原理](#user-content-rationale)
+- [集成API](#user-content-integration-api)
 - [Tiles API](#user-content-tiles-api)
-- [Nesting](#user-content-nesting)
-- [Middleware](#user-content-middleware)
-- [Server-side Rendering](#user-content-server-side-rendering)
-- [Selectors](#user-content-selectors)
-- [Tests](#user-content-tests)
+- [嵌套](#user-content-nesting)
+- [中间件](#user-content-middleware)
+- [服务端渲染](#user-content-server-side-rendering)
+- [选择器](#user-content-selectors)
+- [测试](#user-content-tests)
 
-## Example of use
+## 使用示例
 
-> [More comprehensive example](https://redux-tiles.js.org/introduction/Example.html)
+> [更全面的例子](https://redux-tiles.js.org/introduction/Example.html)
 
 ```javascript
 import { createTile, createSyncTile } from 'redux-tiles';
 
-// sync tile to store information without any async stuff
+// 同步tile存储信息没有任何异步的东西
 const loginStatus = createSyncTile({
   type: ['user', 'loginStatus'],
   fn: ({ params: status }) => ({
@@ -56,32 +56,32 @@ const loginStatus = createSyncTile({
   }),
 });
 
-// request to the server
-// it is absolutely separated, so it is very easy
-// to compose different requests
+// 请求到服务器
+// 它是绝对分开的，所以很容易
+// 组合不同的请求
 const authRequest = createTile({
   type: ['user', 'authRequest'],
-  // we have access to dispatch, actions, selectors, etc –
-  // we can pass all what we need when creating middleware
-  // it allows us to test easier, and also compose other tiles
+  // 我们可以访问dispatch, actions, selectors, 等 -
+  // 我们可以在创建中间件时传递所需的所有内容
+  // 它使我们能够更容易地进行测试，也可以组成其他的tiles
   fn: ({ params, api, dispatch, actions, getState }) =>
     api.post('/login', params),
 });
 
-// actual business logic
-// note that we don't use direct `api` calls here
-// we just compose other basic tiles
+// 实际的业务逻辑
+// 请注意，我们不在这里使用直接的`api`调用
+// 我们只是组成其他基本的tiles
 const authUser = createTile({
   type: ['user', 'auth'],
   fn: async ({ params, dispatch, actions, selectors, getState }) => {
-    // login user
+    // 登录用户
     const { data: { id }, error } = await dispatch(actions.tiles.user.authRequest(params));
 
     if (error) {
       throw new Error(error);
     }
 
-    // set up synchronously user status
+    // 同步地设置用户状态
     dispatch(actions.tiles.user.loginStatus(true));
 
     return true;
@@ -89,9 +89,9 @@ const authUser = createTile({
 });
 ```
 
-## Rationale
+## 基本原理
 
-There are enough projects around to keep your state management clean (for [example](https://github.com/erikras/ducks-modular-redux)), but they are mostly about organizing, rather than removing burden of repetitive stuff from the developer. Other packages offer you full-fledge integration with REST-API, [normalizing](https://github.com/paularmstrong/normalizr) your entities, building relations between models, etc. There is nothing like this here – in fact, if you need something like this, with the ability to query your local "database", I highly advise you to create your own solution, which will be custom-tailored to your specific problem.
+有足够的项目来保持您的状态管理清晰([例如](https://github.com/erikras/ducks-modular-redux))，但是它们主要是关于组织的，而不是从开发人员那里删除重复内容的麻烦。其他软件包为您提供了与REST-API的全面集成，[规范](https://github.com/paularmstrong/normalizr)你的实体，建立模型之间的关系等等。这里没有这个东西 – 事实上，如果你需要类似这样的东西，并且有能力查询你的本地“数据库”，我强烈建议你创建你自己的解决方案，它将根据你的具体问题定制。
 
 This package focuses on very basic blocks, which are good for pretty simple applications (e.g. login/logout, fetch client data, set up calculator values).
 
