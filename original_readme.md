@@ -93,9 +93,9 @@ const authUser = createTile({
 
 有足够的项目来保持您的状态管理清晰([例如](https://github.com/erikras/ducks-modular-redux))，但是它们主要是关于组织的，而不是从开发人员那里删除重复内容的麻烦。其他软件包为您提供了与REST-API的全面集成，[规范](https://github.com/paularmstrong/normalizr)你的实体，建立模型之间的关系等等。这里没有这个东西 – 事实上，如果你需要类似这样的东西，并且有能力查询你的本地“数据库”，我强烈建议你创建你自己的解决方案，它将根据你的具体问题定制。
 
-This package focuses on very basic blocks, which are good for pretty simple applications (e.g. login/logout, fetch client data, set up calculator values).
+这个软件包专注于非常基本的模块，这对于非常简单的应用来说是很好的(e.g. login/logout, fetch client data, set up calculator values).
 
-## Integration API
+## 集成API
 
 Despite being easy-to-use package to write new modules, you'd have to do some work to integrate it into your project. In a nutshell, you have to have a middleware which will handle returned functions from dispatched actions (one is provided in this package, but [redux-thunk](https://github.com/gaearon/redux-thunk) will suffice as well), and then you have to combine all modules to create actions & reducers.
 It is better to see in a small example:
