@@ -97,8 +97,7 @@ const authUser = createTile({
 
 ## 集成API
 
-Despite being easy-to-use package to write new modules, you'd have to do some work to integrate it into your project. In a nutshell, you have to have a middleware which will handle returned functions from dispatched actions (one is provided in this package, but [redux-thunk](https://github.com/gaearon/redux-thunk) will suffice as well), and then you have to combine all modules to create actions & reducers.
-It is better to see in a small example:
+尽管使用易于使用的软件包编写新模块，但您还是必须做一些工作才能将其集成到您的项目中。 简而言之，你必须有一个中间件来处理派遣动作的返回函数（在这个包中提供了一个，并且[redux-thunk](https://github.com/gaearon/redux-thunk)也可以），然后你必须结合所有的模块来创建actions和reducers。 在这个小例子中我们可以看到：
 
 ```javascript
 import { createTile, createEntities, createMiddleware } from 'redux-tiles';
