@@ -24,7 +24,7 @@ Redux是一个非常好的库，可以让状态管理变得清晰。但问题在
 npm install --save redux-tiles
 ```
 
-这个软件包的构思是基于我的这个想法，人们通常会使用一些打包工具 - [Webpack](https://webpack.js.org/), [Browserify](http://browserify.org/) or [Rollup](http://rollupjs.org/)。 该包本身是用TypeScript编写的，并且因此可以提供立即可用的typings。
+这个软件包是基于我心中的这个想法构建的，人们通常会使用一些打包工具 - [Webpack](https://webpack.js.org/), [Browserify](http://browserify.org/) or [Rollup](http://rollupjs.org/)。 该包本身是用TypeScript编写的，并且因此可以提供立即可用的typings。
 
 如果由于某种原因不使用bundler，则可以使用位于[dist文件夹](https://unpkg.com/redux-tiles@0.6.1/dist/)中的UMD版本。 只需在你的页面中通过`script`标签包含它，然后你就可以在window.ReduxTiles全局变量下得到它。
 
@@ -63,7 +63,7 @@ const authRequest = createTile({
   type: ['user', 'authRequest'],
   // 我们可以访问dispatch, actions, selectors, 等 -
   // 我们可以在创建中间件时传递所需的所有内容
-  // 它使我们能够更容易地进行测试，也可以组成其他的tiles
+  // 它使我们能够更容易地进行测试，并且也可以组成其他的tiles
   fn: ({ params, api, dispatch, actions, getState }) =>
     api.post('/login', params),
 });
@@ -91,7 +91,7 @@ const authUser = createTile({
 
 ## 基本原理
 
-有足够的项目来保持您的状态管理清晰([例如](https://github.com/erikras/ducks-modular-redux))，但是它们主要是关于组织的，而不是从开发人员那里删除重复内容的麻烦。其他软件包为您提供了与REST-API的全面集成，[规范](https://github.com/paularmstrong/normalizr)你的实体，建立模型之间的关系等等。这里没有这个东西 – 事实上，如果你需要类似这样的东西，并且有能力查询你的本地“数据库”，我强烈建议你创建你自己的解决方案，它将根据你的具体问题定制。
+有足够的项目来保持您的状态管理清晰([例如](https://github.com/erikras/ducks-modular-redux))，但是它们主要是关于组织的，而不是从开发人员那里移除重复内容的麻烦。其他软件包为您提供了与REST-API的全面集成，[规范](https://github.com/paularmstrong/normalizr)你的实体，建立模型之间的关系等等。这里没有这个东西 – 事实上，如果你需要类似这样的东西，并且有能力查询你的本地“数据库”，我强烈建议你创建你自己的解决方案，它将根据你的具体问题定制。
 
 这个软件包专注于非常基本的模块，这对于非常简单的应用来说是很好的(e.g. login/logout, fetch client data, set up calculator values).
 
