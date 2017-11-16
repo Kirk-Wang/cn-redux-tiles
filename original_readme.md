@@ -114,8 +114,8 @@ const tiles = [
 
 const { actions, reducer, selectors } = createEntities(tiles);
 
-// we inject `actions` and `selectors` into middleware, so they
-// will be available inside `fn` function of all tiles
+// 我们将`actions`和`selectors`注入到中间件中，
+// 所以它们将在所有tiles的`fn`函数内可用
 const { middleware } = createMiddleware({ actions, selectors });
 
 createStore(reducer, applyMiddleware(middleware));
@@ -123,29 +123,28 @@ createStore(reducer, applyMiddleware(middleware));
 
 ## Tiles API
 
-Tiles are the heart of this library. They are intended to be very easy to use, compose and to test.
-There are two types of tiles – asynchronous and synchronous. Modern applications are very dynamic, so async ones will be likely used more often. Also, don't constrain yourself into the mindset that async tiles are only for API communication – it might be anything, which involves some asynchronous interaction (as well as composing other tiles) – for instance, long polling implementation.
-> [Full documentation for async tiles](https://redux-tiles.js.org/api/createTile.html)
+Tiles是这个库的核心。他们的目的是要非常容易组合，撰写和测试。有两种类型的tiles - 异步和同步。现代应用程序是非常动态的，所以异步的tile可能会更频繁地使用。另外，不要将自己限制在异步tiles仅用于API通信的思维模式中 – 它可能是任何事情，涉及一些异步交互（以及组成其他tiles） - 例如，实现长轮询。
+> [完整的异步tiles文档](https://redux-tiles.js.org/api/createTile.html)
 ```javascript
 import { createTile } from 'redux-tiles';
 
 const photos = createTile({
-  // they will be structured api.photos inside redux state,
-  // and also available under actions and selectors as:
-  // actions.tiles.api.photos
+  // 它们将在redux状态下被构造成api.photos，
+  // 也可以在actions和selectors下使用：
+  // actions.tiles.api.photos
   type: ['api', 'photos'],
   
   
-  // params is an object with which we dispatch the action
-  // you can pass only one parameter, so keep it as an object
-  // with different properties
-  //
-  // all other properties are from your middleware
-  // fn expects promise out of this function
+  // params是我们派发动作的一个对象
+  // 你只能传递一个参数，所以保持它作为一个对象
+  // 具有不同的属性
+  //
+  // 所有其他属性都来自您的中间件
+  // fn期望从这个函数中获得Promise
   fn: ({ params, api }) => api.get('/photos', params),
   
   
-  // to nest data:
+  // 嵌套数据：
   // { 5:
   //    10: {
   //      isPending: true,
@@ -154,21 +153,21 @@ const photos = createTile({
   //      error: null,
   //   },
   // },
-  // if you save under the same nesting array, data will be replaced
-  // other branches will be merged
+  // 如果保存在同一个嵌套数组下，数据将被替换
+  // 其他分支将被合并
   nesting: (params) => [params.page, params.count],
 
-
-  // unless we will invoke with second parameter object with asyncForce: true,
-  // it won't be requested again
+  // 除非我们用asyncForce: true作为第二个参数对象来调用，
+  // 否则它将不会再请求
   // dispatch(actions.tiles.api.photos(params, { asyncForce: true }))
+
   caching: true,
 });
 ```
 
-We also sometimes want to keep some sync info (e.g. list of notifications), or we want to store some numbers for calculator, or active filters ([todoMVC](http://todomvc.com/) is a good example of a lot of synchronous operations). In this situation we will use `createSyncTile`, which has no meta data like `isPending`, `error` or `fetched`, but keeps all returned data from a function directly in state.
+我们有时还想保留一些同步信息（例如通知列表），或者我们想为计算器存储一些数字，或者激活过滤器（[todoMVC](http://todomvc.com/)是很多同步操作的一个很好的例子）。在这种情况下，我们将使用`createSyncTile`，它没有像`isPending`，`error`或`fetched`这样的元数据，而是直接将所有从函数返回的数据保存在状态中。
 
-> [Full documentation for sync tiles](https://redux-tiles.js.org/api/createSyncTile.html)
+> [完整的同步tiles文档](https://redux-tiles.js.org/api/createSyncTile.html)
 
 ```javascript
 import { createSyncTile } from 'redux-tiles';
@@ -176,11 +175,10 @@ import { createSyncTile } from 'redux-tiles';
 const notifications = createSyncTile({
   type: ['notifications'],
   
-  
-  // all parameters are the same as in async tile
+  // 所有参数与异步tile相同
   fn: ({ params, dispatch, actions }) => {
-    // we can dispatch async actions – but we can't wait
-    // for it inside sync tiles
+    // 我们可以派遣异步actions - 但我们不能等待它返回结果
+    // 在同步tiles里面
     dispatch(actions.tiles.user.dismissTerms());
 
     return {
