@@ -124,7 +124,9 @@ createStore(reducer, applyMiddleware(middleware));
 ## Tiles API
 
 Tiles是这个库的核心。他们的目的是要非常容易组合，撰写和测试。有两种类型的tiles - 异步和同步。现代应用程序是非常动态的，所以异步的tile可能会更频繁地使用。另外，不要将自己限制在异步tiles仅用于API通信的思维模式中 – 它可能是任何事情，涉及一些异步交互（以及组成其他tiles） - 例如，实现长轮询。
+
 > [完整的异步tiles文档](https://redux-tiles.js.org/api/createTile.html)
+
 ```javascript
 import { createTile } from 'redux-tiles';
 
@@ -187,10 +189,10 @@ const notifications = createSyncTile({
     };
   },
 
-  // alternatively, if you perform some actions on existing data,
-  // it might be useful to write more declarative actions
-  // they have exactly the same signature and dispatch returned data
-  // to the tile
+  // 或者，如果您对现有数据执行某些actions，
+  // 编写更多的声明性actions可能是有用的
+  // 它们具有完全相同的签名并分派返回的数据
+  // 到tile
   fns: {
     add: ({ params, selectors, getState}) => {
       const currentData = selectors.notifications(getState(), params);
@@ -202,10 +204,10 @@ const notifications = createSyncTile({
     },
   },
 
-  // you can pass initial state to sync tile
-  // please, be careful with it! if you use nesting, then
-  // you have to specify nested items (otherwise selectors will
-  // return undefined for your nested item)
+  // 你可以通过初始状态来同步tile
+  // 请小心！ 如果你使用嵌套，那么
+  // 你必须指定嵌套的项目（否则selectors会
+  // 从您的嵌套项目中返回undefined）
   initialState: {
     terms: {
       type: 'terms',
@@ -213,16 +215,17 @@ const notifications = createSyncTile({
     },
   },
   
-  // nesting works the same way
+  // 嵌套以同样的方式工作
   nesting: ({ type }) => [type],
 });
 ```
 
-## Nesting
+## 嵌套
 
-> [Full documentation on nesting](https://redux-tiles.js.org/advanced/nesting.html)
+> [关于嵌套的完整文档](https://redux-tiles.js.org/advanced/nesting.html)
 
-Very often we have to separate some info, and with canonical redux we have to write something like this:
+我们经常需要分离一些信息，并且使用规范的redux，我们必须这样写：
+
 ```javascript
 case ACTION.SOME_CONSTANT:
   return {
@@ -236,16 +239,16 @@ case ACTION.SOME_CONSTANT:
   };
 ```
 
-Or with `Object.assign`, which will make it even less readable. This is a pretty common pattern, and also pretty error prone – so we have to cover such code with unit-tests, while in reality they don't do a lot of intrinsic logic – just merge. Of course, we can use something like `lodash.merge`, but it is not always suitable. In tiles we have `nesting` property, in which you can specify a function from which you can return an array of nested values. The same code as above:
+或者用`Object.assign`，这会使得它更不可读。这是一个很常见的模式，也很容易出错 – 所以我们必须用单元测试来覆盖这样的代码，而实际上他们并没有做太多的内在逻辑 – 只是合并。当然，我们可以使用像`lodash.merge`这样的东西，但并不总是合适的。在tiles中我们有`nesting`属性，您可以在其中指定一个函数，您可以从中返回一个嵌套值数组。与上面相同的代码：
 
 ```javascript
 const infoTile = createTile({
   type: ['info', 'storage'],
   
-  // params here and in nesting are the same object
+  // 这里的参数和嵌套是同一个对象
   fn: ({ params: { quantity, id }, api }) => api.get('/storage', { quantity, id }),
   
-  // in the state they will be kept with the following structure:
+  // 在这种状态下，他们将保持以下结构：
   // {
   //   someId: {
   //     5: {
@@ -260,40 +263,41 @@ const infoTile = createTile({
 });
 ```
 
-## Middleware
+## 中间件
 
-In order to use this library, you have to apply middleware, which will handle functions returned from dispatched actions. Very basic one is provided by this package:
+为了使用这个库，你必须应用中间件，它将处理从分发actions返回的函数。这个包提供了非常基本的一个：
 
-> [Full documentation for middleware](https://redux-tiles.js.org/api/createMiddleware.html)
+> [完整的中间件文档](https://redux-tiles.js.org/api/createMiddleware.html)
+
 ```javascript
 import { createMiddleware } from 'redux-tiles';
 
-// these are not required, but adding them allows you
-// to do Dependency Injection pattern, so it is easier to test
+// 这些不是必需的，但添加它们可以让你
+// 做依赖注入模式，所以测试起来比较容易
 import actions from '../actions';
 import selectors from '../selectors';
 
-// it is a good idea to put API layer inside middleware, so
-// you can easily separate client and server, for instance
+
+// 将API层放入中间件是一个好主意，所以
+// 例如，您可以轻松分离客户端和服务器
 import api from '../utils/api';
 
 
-// this object is optional. every property will be available inside
-// `fn` of all tiles
-// also, `waitTiles` is helpful for server-side-rendering
+// 这个对象是可选的。 每个属性将在所有tiles的`fn`里面可用
+// 同样，`waitTiles`对于服务器端的渲染是有帮助的
 const { middleware, waitTiles } = createMiddleware({ actions, selectors, api });
 applyMiddleware(middleware);
 ```
 
-Also, [redux-thunk](https://github.com/gaearon/redux-thunk) is supported, and in order to pass your own properties you should [inject this object to redux-thunk](https://github.com/gaearon/redux-thunk#injecting-a-custom-argument). Also, there is nothing bad to just import actions and selectors on top of the files, but then testing might require much more mocking, which can make your tests more brittle.
+此外，支持[redux-thunk]（https://github.com/gaearon/redux-thunk），为了传递你自己的属性，你应该[注入这个对象到redux-thunk](https://github.com/gaearon/redux-thunk#injecting-a-custom-argument)。 而且，在文件之上导入actions和selectors并没有什么不好，但是测试可能需要更多的模拟，这会使测试变得更加脆弱。
 
-## Server-side Rendering
+## 服务器端渲染
 
-> [Article about SSR with prefetch](http://blog.bloomca.me/2017/06/11/server-side-rendering-with-prefetch.html)
+> [有关SSR与prefetch的文章](http://blog.bloomca.me/2017/06/11/server-side-rendering-with-prefetch.html)
 
-Redux-tiles support requests on the server side. In order to do that correctly, you are supposed to create actions for each request in Node.js. Redux-Tiles has caching for async requests (and keeps them inside middleware, so they are not shared between different user requests) – it keeps list of all active promises, so you might accidentaly share this part of the memory with other users!
+Redux-tiles支持服务器端的请求。为了正确地做到这一点，您应该在Node.js中为每个请求创建操作。Redux-Tiles缓存异步请求（并将它们保存在中间件中，所以它们不会在不同的用户请求之间共享） – 它保留所有活动promise的列表，所以你可能无意中与其他用户分享这部分内存！
 
-Also, to make this part of functionality working, you have to use redux-tiles middleware, or pass `promisesStorage` object to redux-thunk additional object (more in [caching section in docs](https://redux-tiles.js.org/api/createTile.html#caching)).
+另外，为了使这部分功能正常工作，必须使用redux-tiles中间件，或将`promisesStorage`对象传递给redux-thunk附加对象（更多内容请参见[文档中的缓存部分](https://redux-tiles.js.org/api/createTile.html#caching)）。
 
 ```javascript
 import { createMiddleware, createEntities } from 'redux-tiles';
@@ -304,26 +308,27 @@ const { actions, reducer, selectors } = createEntities(tiles);
 const { middleware, waitTiles } = createMiddleware({ actions, selectors });
 const store = createStore(reducer, {}, applyMiddleware(middleware));
 
-// this is a futile render. It is needed only to kickstart requests
-// unfortunately, there is no way to avoid it
+
+// 这是一个徒劳的渲染 只需要启动请求
+// 不幸的是，没有办法避免它
 renderApplication(req);
 
-// wait for all requests which were fired during the render
+// 等待渲染过程中触发的所有请求
 await waitTiles();
 
-// this time you can safely render your application – all requests
-// which were in `componentWillMount` will be fullfilled
-// remember, `componentDidMount` is not fired on the server
+
+// 这次您可以安全地呈现您的应用程序 - `componentWillMount`中的所有请求都将全部填满
+// 记住，在服务器上不会触发`componentDidMount`
 res.send(renderApplication(req));
 ```
 
-There is also a package [delounce](https://github.com/Bloomca/delounce), from where you can get `limit` function, which will render the application if requests are taking too long.
+还有一个包[delounce](https://github.com/Bloomca/delounce)，你可以从那里获得`limit`函数，如果请求时间太长，这个函数将会渲染应用程序。
 
-## Selectors
+## 选择器
 
-> [Full documentation on selectors](https://redux-tiles.js.org/advanced/selectors.html)
+> [关于选择器的完整文档](https://redux-tiles.js.org/advanced/selectors.html)
 
-All tiles provide selectors. After you've collected all tiles, invoke `createSelectors` function with possible change of default namespace, and after you can just use it based on the passed type:
+所有的tiles都提供selectors。 在收集完所有的tiles之后，调用`createSelectors`函数，可能会更改默认的名称空间，然后可以根据传入的类型使用它：
 
 ```javascript
 import { createTile, createSelectors } from 'redux-tiles';
@@ -338,14 +343,13 @@ const tiles = [tile];
 
 const selectors = createSelectors(tiles);
 
-// second argument is params with which you dispatch action – it will get data
-// for corresponding nesting
+// 第二个参数是你分发action的参数 - 它将得到相应嵌套的数据
 const { isPending, fetched, data, error } = selectors.user.auth(state, { id: '456' });
 ```
 
-## Tests
+## 测试
 
-Almost all business logic will be contained in "complex" tiles, which don't do requests by themselves, rather dispatching other tiles, composing results from them. It is very important to pass all needed functions via middleware, so you can easily mock it without relying on other modules. All passed data is available in tiles via `reflect` property.
+几乎所有的业务逻辑将被包含在“复杂”的tiles中，而这些tiles不会自己发出请求，而是调度其他tiles，从而组成结果。通过中间件传递所有需要的功能是非常重要的，所以你可以很容易地模拟它，而不依赖于其他模块。所有传递的数据都可以通过在tiles中的`reflect`属性获得。
 
 ```javascript
 import { createTile } from 'redux-tiles';
