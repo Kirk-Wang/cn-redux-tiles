@@ -23,6 +23,7 @@ const { action, selectors, reducer, constants, reflect } = createTile({
 ```
 
 You can't affect this structure at all – your data will go either to `data` field, or either to `error` in case of throwing an error. `fetched` field allows you to keep falsy values inside `data`, so you can return from `fn` without problems. By this contract you can be sure inside your components the interface, so there is no way to have `isLoading`, `isPending`, `isUpdating` and so on – whatever seems more semantic for each use-case. Yes, it is not that elegant, but much more consistent; same argument for `data` field.
+你根本不能影响这个结构 – 你的数据将会转到`data`字段，或者在抛出错误的时候转到`error`。
 
 ## API to create new tile
 
