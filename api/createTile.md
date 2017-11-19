@@ -22,20 +22,18 @@ const { action, selectors, reducer, constants, reflect } = createTile({
 }
 ```
 
-You can't affect this structure at all – your data will go either to `data` field, or either to `error` in case of throwing an error. `fetched` field allows you to keep falsy values inside `data`, so you can return from `fn` without problems. By this contract you can be sure inside your components the interface, so there is no way to have `isLoading`, `isPending`, `isUpdating` and so on – whatever seems more semantic for each use-case. Yes, it is not that elegant, but much more consistent; same argument for `data` field.
-你根本不能影响这个结构 – 你的数据将会转到`data`字段，或者在抛出错误的时候转到`error`。
+你根本不能影响这个结构 – 你的数据将会转到`data`字段，或者在抛出错误的时候转到`error`。`fetched`字段允许你是否保存值在`data`内，所以你可以从`fn`返回而没有任何问题。通过这个契约你可以确定你组件里面的这个接口，所以没有 `isLoading`, `isPending`, `isUpdating`等等 – 对于每个用例，似乎都有更多的语义。是的，它不是那么优雅，但更一致;对于`data`字段使用相同参数。
 
-## API to create new tile
+## 用API来创建新的tile
 
-Now let's take a look closer into passed object when we create a new tile:
+现在让我们来看看当我们创建一个新的tile时传入的对象：
 
 ```javascript
 import { createTile } from 'redux-tiles';
 
 const userTile = createTile({
-  // type will be reflected in store, so it will be stored
-  // under state.hn_api.user (so the first element in the array
-  // can serve like an umbrella!)
+  // type将被反射在store，所以它将存储在state.hn_api.user下
+  // （所以数组中的第一个元素可以像伞一样服务！）lalala,我不懂你的幽默~~
   type: ['hn_api', 'user'],
   
   // function for async tile should return a promise, otherwise it
@@ -44,6 +42,9 @@ const userTile = createTile({
   // function was invoked
   // e.g. here: dispatch(actions.hn_api.user({ id: 'someID' }));
   // result of the promise will be placed under `data` inside state
+  // async tile的函数应该返回一个promise，否则会失败。
+  // 函数获取一个参数，一个包含所有通过的中间件以及参数的对象 – 
+  // 
   fn: ({ api, params }) => api.get(`/api/user/${params.id}`),
   
   // nesting allows you to separate your data (first argument is params
