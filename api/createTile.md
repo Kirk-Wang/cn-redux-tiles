@@ -36,15 +36,10 @@ const userTile = createTile({
   // （所以数组中的第一个元素可以像伞一样服务！）lalala,我不懂你的幽默~~
   type: ['hn_api', 'user'],
   
-  // function for async tile should return a promise, otherwise it
-  // will fail. function gets one parameter, object, which contains
-  // all passed middleware, and params – object with which dispatched
-  // function was invoked
-  // e.g. here: dispatch(actions.hn_api.user({ id: 'someID' }));
-  // result of the promise will be placed under `data` inside state
   // async tile的函数应该返回一个promise，否则会失败。
-  // 函数获取一个参数，一个包含所有通过的中间件以及参数的对象 – 
-  // 
+  // 函数获取一个参数，对象,它包含所有通过的中间件以及参数 – 具有已被调用的分发函数的对象
+  // e.g. here: dispatch(actions.hn_api.user({ id: 'someID' }));
+  // promise的结果将被放在state内部的`data`下
   fn: ({ api, params }) => api.get(`/api/user/${params.id}`),
   
   // nesting allows you to separate your data (first argument is params
