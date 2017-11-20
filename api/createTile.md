@@ -42,19 +42,17 @@ const userTile = createTile({
   // promise的结果将被放在state内部的`data`下
   fn: ({ api, params }) => api.get(`/api/user/${params.id}`),
   
-  // nesting allows you to separate your data (first argument is params
-  // from fn). It means that all requests will have their own isPending,
-  // fetched, data and error, as well as caching
-  // it is an optional parameter, arbitrary nesting is supported
+  // nesting允许你分开你的数据（第一个参数是来自fn的params）。
+  // 它的意思是所有请求将会有他们自己的isPending，fetched，data和error以及caching
+  // 它是一个可选参数，支持任意嵌套
   nesting: ({ id }) => [id],
 
-  // this is an aggressive caching for specific item – if it was
-  // downloaded, then it won't be downloaded again at all, unless
-  // we will invoke with the second parameter `forceAsync: true`:
+  // 这是一个对指定项目的主动缓存 – 
+  // 如果它被下载，那么它将不会被再次下载，
+  // 除非我们将调用第二个参数`forceAsync：true`：
   // dispatch(actions.hn_api.user({ id: 'someID' }, { forceAsync: true }));
   //
-  // also, it means that there will be only one simulatenous request
-  // other dispatches will return exactly the same promise
+  // 同样，这意味着同时只有一个发出的请求，其他dispatch将返回完全相同的promise
   caching: true,
 });
 ```
