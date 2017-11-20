@@ -57,9 +57,9 @@ const userTile = createTile({
 });
 ```
 
-## Caching
+## 缓存
 
-Asynchronous tiles support caching out of the box, you just have to set property `caching` to `true`. It will make two things happen – it won't invoke the same function if the data is already presented there, and also it will prevent the same function be invoked again in case it is already being processing (but dispatched action will return exactly the same promise, so you can safely await for it, and then query the state - it will be an updated value). The latter case is interesting – it basically means that we get rid of race conditions, and we are safe to query same endpoints in a declarative way, without worrying of several requests to same endpoints.
+异步tile支持开箱即用的缓存，您只需将属性`caching`设置为`true`即可。这将会使两件事情发生 – 如果数据已经在那里显示，它将不会调用相同的函数，而且一旦它已经在处理中，它将防止再次调用相同的函数(并且dispatch过的action将返回完全相同的promise，所以你可以安全地等待它，然后查询状态 - 它将是一个更新过的值)。后一种情况很有趣 – 它基本上意味着我们摆脱了race condition，并且我们可以安全地以声明的方式查询相同的端点，而不必担心对相同端点的多个请求。
 
 If you have already dispatched an action with enabled caching, and you want to invoke this action again, then you would have to send an object with a key `forceAsync: true` as a second parameter to invoked function:
 ```js
