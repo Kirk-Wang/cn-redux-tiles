@@ -66,18 +66,18 @@ const userTile = createTile({
 dispatch(actions.api.users({ id: 'someID' }, { forceAsync: true }));
 ```
 
-Though the same promise thing might seem as a magical part, it is not! In order to make it work for each requests in Node.js, we keep this object inside middleware (so it belongs to the instance of a store), and it means that in order to make it work we have to use [redux-tiles' middleware](./createMiddleware.md), or pass `promisesStorage` object to [redux-thunk](https://github.com/gaearon/redux-thunk):
+虽然相同的promise可能看起来像一个神奇的部分，但它不是！为了使它适用于Node.js中的每个请求，我们把这个对象保存在中间件中（所以它属于一个store的实例），这意味着为了使它能够工作，我们必须使用[redux-tiles的中间件](./createMiddleware.md)，或者把`promisesStorage`对象传递给[redux-thunk](https://github.com/gaearon/redux-thunk)：
 ```js
 applyMiddleware(thunk.withExtraArgument({ promisesStorage: {} }))
 ```
 
-Redux-tiles' middleware will inject this object automatically. This object is also crucial for server-side rendering, in case we want to prefetch data – this object collects all requests (regardless of caching; it will just filter same actions if caching is enabled) and `waitTiles` will await all of them.
+Redux-Tile的中间件会自动注入这个对象。如果我们要prefetch数据，这个对象对于服务器端渲染也很重要 – 这个对象收集所有请求（不管是否缓存;如果启用了缓存，它只会过滤相同的action），并且`waitTiles` 将等待所有的请求。
 
 ## Function
 
-Property `fn` is an obvious target to perform some API requests, but there are no restrictions on usage of it, so you can do whatever you want – starting from sleeping several seconds and to polling of some new data.
+属性`fn`是执行一些API请求的明显目标，但是对它的使用没有任何限制，所以你可以做任何你想做的事情 - 从睡眠几秒钟和轮询一些新的数据开始。
 
-Let's implement both of these cases, starting with sleep. We will show notification for 5 seconds, and after close it:
+从睡眠开始，我们来实现这两种情况。我们将显示通知5秒钟后关闭它：
 ```javascript
 import { createTile } from 'redux-tiles';
 import { sleep } from 'delounce';
@@ -87,21 +87,20 @@ const showNotification = createTile({
   fn: async ({ dispatch, actions, params }) => {
     dispatch(actions.ui.notifications(params));
     await sleep(5000);
-    // let's assume that sending only id will close notification
+    // 让我们假设只发送id将关闭通知
     dispatch(actions.ui.notifications({ id: params.id }));
 
-    // in this case this data is pretty much useless
-    // but sometimes it is helpful
+    //在这种情况下，这个数据几乎是无用的
+    //但有时它是有帮助的
     return { closed: true };
   },
-  // so we can check whether notification is going to be closed,
-  // it is not really needed, but it costs nothing to us, so we can
-  // remove/add it in no time
+  // 所以我们可以检查通知是否将被关闭，
+  // 它并不是真的需要，但它对我们没有任何成本，所以我们可以立即删除/添加它
   nesting: ({ id }) => [id],
 });
 ```
 
-Now let's go to more complex example – polling of the user data. For example, we billed user, and now we are awaiting updated profile details:
+现在我们来看更复杂的例子 - 轮询用户数据。 例如，我们为用户付款，现在我们正在等待更新的配置文件详细信息：
 ```javascript
 import { createTile } from 'redux-tiles';
 import { sleep } from 'delounce';
@@ -113,8 +112,7 @@ const pollDetails = createTile({
       await sleep(3000);
       const { data } = await dispatch(actions.user.data());
       if (data.card !== params.card) {
-        // same thing – this one is not particularly helpful data,
-        // but it might be useful
+        // 同样的事情——这个数据不是特别有用，但可能有用
         return { card: data.card };
       }
     }
@@ -122,48 +120,42 @@ const pollDetails = createTile({
 });
 ```
 
-Polling is a great example of hitting the boundaries of this library – it is not intended to solve complex asynchronous flows, it is all about composition of small units. So, if you need even more complicated behaviour, or some tweeks like stopping of the polling, etc, then I can recommend to take a look at something like [Redux-saga](https://github.com/redux-saga/redux-saga).
-But if you have them just in couple of places, when you should be good sticking with redux-tiles.
+轮询是触及这个库边界的一个很好的例子 – 它不是用来解决复杂的异步流，而是关于小单元的组合。因此，如果你需要更复杂的行为，或者像停止轮询之类的琐事，那么我可以建议你看一下[Redux-saga](https://github.com/redux-saga/redux-saga)之类的东西。
+但如果你只在几个地方有他们，当你应该坚持使用redux-tiles的时候。
 
 ## Returned object API
 
-When we create a new tile, we get in response object with all needed entities. As you will see later, it is advised to use special utilities to combine them together, but it is possible to do it by hand, in case you need. So, let's take a closer look:
+当我们创建一个新的tile时，我们得到所有需要的实体的响应对象。后面你会看到，建议使用特殊工具将它们组合在一起，但是可以用手工完成，以防万一需要。 所以，让我们仔细看看：
 
 ```javascript
 import { createTile } from 'redux-tiles';
 
 const {
-  // this is an actual action, which you can dispatch if you want to
-  // there is no magic behind it, except that it has a property `reset`,
-  // which is a function to reset reducer to default state (synchronously)
+  // 这是一个实际的动作，如果你愿意，你可以dispatch
+  // 它背后没有魔法，除了它有一个`reset`属性，
+  // 这是一个将reducer重置为默认状态（同步）的函数
   action,
 
-  // reducer function. this one is really tricky – in order to use it correctly,
-  // you would have to combine it by yourself (so array passed in `type` will
-  // make it not that easy)
-  // also, in case you want to combine it by yourself, keep in mind that
-  // it can be attached only to the root without using `createReducers`
-  //
-  // so, to conclude, this one, unfortunately, has some magic and it is better
-  // to combine using `createReducers` from this library
+  // reducer function. 这个很棘手，为了正确地使用它，
+  // 你将不得不自己结合它（所以在`type`中传入的数组将不会那么容易）
+  // 另外，如果你想自己结合它，请记住，它只能在不使用`createReducers`的前提下附加到root上。
+  // 所以，总之，不幸的是，这一个有一些魔力，最好使用这个库中的`createReducers`来合并
   reducer,
 
-  // object with START, SUCCESS, FAILURE and RESET strings
-  // strings are unique by using type
-  // you can use them anywhere you want – for instance, in redux-saga
+  // 有START，SUCCESS，FAILURE和RESET字符串的对象
+  // 字符串通过使用type是唯一的
+  // 你可以在任何你想要的地方使用它们 - 例如，在redox-saga中
   constants,
 
-  // object with two methods – get and getAll
-  // get can get nested data, while getAll returns you all data
-  // despite of nesting. getAll is a very rare function, you
-  // will be good with just get in 99%
+  // 有两个方法的对象 - get和getAll
+  // get可以得到嵌套的数据，而getAll返回所有的数据，尽管它们都是嵌套的。
+  // getAll是一个不常用的函数，99%的情况下，你仅用get就够了
   selectors,
 
-  // passed `type` property. can be also reached via `reflect` property
+  // 传递的`type`属性。 也可以通过`reflect`属性拿到
   tileName,
 
-  // object which you passed to `createTile`. that's the way to get
-  // your functions and to test them
+  // 你传递给`createTile`的对象。这就是得到函数和测试它们的方法
   reflect
 } = createTile({
   type: ['api', 'get', 'client'],
@@ -171,9 +163,9 @@ const {
 });
 ```
 
-In fact, you likely won't need to get any of those data from a tile, because there are utilities to combine all of them together, but it is helpful for understanding, that under the hood all components are presented.
+实际上，您可能不需要从tile中获得这些数据，因为有实用程序将它们组合在一起，但它有助于理解，在引擎盖下所有组件都被呈现出来了。
 
-## More information
+## 更多的信息
 
 * [Nesting](../advanced/nesting.md)
 * [Selectors](../advanced/selectors.md)
