@@ -61,7 +61,7 @@ const userTile = createTile({
 
 异步tile支持开箱即用的缓存，您只需将属性`caching`设置为`true`即可。这将会使两件事情发生 – 如果数据已经在那里显示，它将不会调用相同的函数，而且一旦它已经在处理中，它将防止再次调用相同的函数(并且dispatch过的action将返回完全相同的promise，所以你可以安全地等待它，然后查询状态 - 它将是一个更新过的值)。后一种情况很有趣 – 它基本上意味着我们摆脱了race condition，并且我们可以安全地以声明的方式查询相同的端点，而不必担心对相同端点的多个请求。
 
-If you have already dispatched an action with enabled caching, and you want to invoke this action again, then you would have to send an object with a key `forceAsync: true` as a second parameter to invoked function:
+如果你已经dispatch了一个启用caching的action，并且你想要再次调用这个action，然后你将必须发送一个拥有key为`forceAsync: true` 的对象，来作为调用函数的第二个参数：
 ```js
 dispatch(actions.api.users({ id: 'someID' }, { forceAsync: true }));
 ```
