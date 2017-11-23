@@ -1,10 +1,10 @@
-# Middleware Overview
+# 中间件概述
 
-[Middleware](http://redux.js.org/docs/advanced/Middleware.html) in Redux processes actions, so you might return not just plain objects with `type` and `payload` properties, but also promises, functions and so on – just handle it with appropriate middleware. There are several really popular libraries, but the most basic and popular, I think, is [redux-thunk](https://github.com/gaearon/redux-thunk), the most basic middleware to deal with async requests. While this is a great middleware, it is dead simple, and I'd recommend to use middleware from this library (also, I highly recommend to take a look at the source code of them – they are _really_ simple – [redux-tiles middleware](https://github.com/Bloomca/redux-tiles/blob/master/src/middleware.ts) and [redux-thunk middleware](https://github.com/gaearon/redux-thunk/blob/master/src/index.js)).
+[中间件](http://redux.js.org/docs/advanced/Middleware.html)在Redux中处理action，所以你不仅可以返回带有`type`和`payload`属性的普通对象，还可以返回promise和函数等等 – 只要用适当的中间件来处理。有几个非常受欢迎的库，并且最基本的和流行的，我认为是[redux-thunk](https://github.com/gaearon/redux-thunk)，处理异步请求的最基本的中间件。虽然这是一个非常棒的中间件，但它却很简单，我建议使用这个库中的中间件（我也强烈建议看一下它们的源代码 – 它们非常简单 - [redux-tiles 中间件](https://github.com/Bloomca/redux-tiles/blob/master/src/middleware.ts)和[redux-thunk 中间件](https://github.com/gaearon/redux-thunk/blob/master/src/index.js)）。
 
 ## createMiddleware API
 
-`createMiddleware` does two things – creates actual middleware, and also exposes function to "wait" all dispatched promises. Let's look at the example:
+`createMiddleware` 做两件事 – 创建实际的中间件，并且还暴露了函数去“等待”所有分发了的promise。 我们来看一下这个例子：
 
 ```javascript
 import { createMiddleware } from 'redux-tiles';
