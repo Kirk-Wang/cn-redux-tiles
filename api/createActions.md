@@ -1,6 +1,6 @@
 # CreateActions API
 
-As it was described in [createTile](./createTile.md), you can get action directly from the tile, and dispatch by yourself, there are no caveats at all. One problem, though, lies in the space of nesting – we can specify `type: ['ui', 'notifications', 'warning']`, but if we access actions directly, we would have to combine some common object by ourselves, to achieve something like `actions.ui.notifications.warning`. `createActions` solves exactly this problem – it iterates over the array of tiles, and based on the given type constructs this nested object.
+正如在[createTile](./createTile.md)中所描述的那样，您可以直接从tile中获取action，并自行dispatch，根本没有任何警告。但是，一个问题在于嵌套的地方 – 我们可以指定`type: ['ui', 'notifications', 'warning']`，但是如果我们直接访问action，就必须自己结合一些共同的对象来实现类似`actions.ui.notifications.warning`的事情。`createActions`正好解决了这个问题 - 它遍历了tile数组，并基于给定的type构造了这个嵌套对象。
 
 So, let's see some example:
 
@@ -16,12 +16,11 @@ const tiles = [userTile];
 const actions = createActions(tiles);
 actions.user.data.get === userTile.action; // true
 ```
+这个函数是一个纯sugar，但是它们的嵌套方式与`type`属性完全一致，这是非常好的。
 
-This function is a pure sugar, but it is nice to have them nested exactly the same way it is in the `type` property.
+## Tiles 参数
 
-## Tiles parameter
-
-`createActions` takes a single parameter, `tiles`, and it can be an array or an object of tiles. The next structure is allowed:
+`createActions`只有一个参数，`tiles`，它可以是一个数组或者一个包含tile的对象。 下一个结构是允许的：
 
 ```javascript
 const userTiles = [userLogin, userData, userPreferences];
