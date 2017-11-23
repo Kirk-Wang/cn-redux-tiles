@@ -17,11 +17,10 @@ const { middleware, waitTiles } = createMiddleware({ api, actions, selectors });
 const store = createStore(reducer, applyMiddleware(middleware));
 ```
 
-`createMiddleware` take object as a parameter, and this object will be desctructured and it's properties will be available inside `fn` of the tile – so it works like [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection). It allows us to test our business logic really use, because we don't have to mock global imports, we just have to pass needed actions/selectors/etc.
+`createMiddleware`将对象作为参数，并且此对象将被解析并且它的属性将在tile的fn内可用 – 所以它像[dependency injection](https://en.wikipedia.org/wiki/Dependency_injection)一样工作。它使我们能够测试我们真正使用的业务逻辑，因为我们不必模拟全局import，只需通过所需的actions/selectors/等等。
 
-While some might argue that it is actually anti-pattern, I personally think that it is a good strategy – less dependencies, more consistent access to other parts of state and dispatching other actions.
+虽然有些人可能会认为它实际上是反模式，但我个人认为这是一个很好的策略 – 减少依赖性，更一致地访问state的其他部分，并分发其他action。
 
-## waitTiles function and server-side rendering
+## waitTiles函数和服务器端渲染
 
-Also, we get in returned object `waitTiles` function. What does it do? Well, this function gets active promises and waits for them – so if you dispatch 5 async modules, all of these promises will be collected by the middleware, and this function after invokation will wait for them. You can use it for server-side rendering – you do "dry-run" rendering first time, prefetching needed data in `componentWillMount`, then you await for `waitTiles()`, and after resolving render will give you markup with prefetched data!
-Remember, though, that you have to instantiate new store for each request, otherwise this storage will be for requests, which will create a mess.
+另外，我们得到了返回对象的`waitTiles`函数。 它有什么作用？ 这个函数会得到所有活动的promise并等待它们 – 所以如果你分发了5个异步模块，所有这些promise都会被中间件收集，调用后这个函数会等待它们。您可以将其用于服务器端呈现 – 你首先进行“dry-run”渲染，在`componentWillMount`中预取所需的数据，然后等待`waitTiles()`，解析渲染后会产生给你带预取数据的标记！但请记住，您必须为每个请求实例化新的store，否则这个存储将用于请求，这会造成混乱。
