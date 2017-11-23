@@ -1,21 +1,21 @@
 # createReducers API
 
-Reducers are pretty tricky in this library – in order to select path correctly, we have to specify under which namespace reducer will be combined. By default it is empty, and this case is suitable only if you put your tiles reducer on the top level. However, if you are integrating into existing project, or with other reducers, when you would have to specify this namespace as a second argument.
+在这个库中，reducer非常复杂 - 为了正确选择路径，我们必须指定在哪个命名空间下的reducer将被组合。默认情况下它是空的，只有把你的tile reducer放在顶层时，这种情况才适用。但是，如果要集成到现有项目或其他reducer，则必须将此名称空间指定为第二个参数。
 
 ```javascript
 import { createReducers } from 'redux-tiles';
 import tiles from '../tiles';
 
-// in case you use _only_ redux-tiles, feel free to keep it
-// on the top level, and just omit second argument
+// 如果您使用_only_ redux-tiles，请随时保留它
+// 在顶层，只是省略第二个参数
 const reducer = createReducer(tiles, 'redux_tiles');
 ```
 
-One might ask, why we specify namespace here, if it affects only selectors? Well, we combine reducers, and we have to provide correct namespace, and therefore it is more correct to provide it here – here is a reason, not just a consequence, as in selectors.
+有人可能会问，为什么我们在这里指定命名空间，如果它只影响选择器?我们将reducer结合在一起，我们必须提供正确的命名空间，因此在这里提供更正确——这是一个原因，而不仅仅是结果，就像选择器一样。
 
-## Tiles parameter
+## Tiles 参数
 
-`createActions` takes a single parameter, `tiles`, and it can be an array or an object of tiles. The next structure is allowed:
+`createActions`只有一个参数，`tiles`，它可以是一个数组或者一个包含tile的对象。 下一个结构是允许的：:
 
 ```javascript
 const userTiles = [userLogin, userData, userPreferences];
