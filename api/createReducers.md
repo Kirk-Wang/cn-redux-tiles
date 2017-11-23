@@ -6,8 +6,7 @@
 import { createReducers } from 'redux-tiles';
 import tiles from '../tiles';
 
-// 如果您使用_only_ redux-tiles，请随时保留它
-// 在顶层，只是省略第二个参数
+// 如果你使用_only_redx-tiles，可以随意保留在顶层，只是省略第二个参数
 const reducer = createReducer(tiles, 'redux_tiles');
 ```
 
