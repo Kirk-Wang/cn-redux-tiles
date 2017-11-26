@@ -96,9 +96,9 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Component);
 ```
 
-## Why state without nesting by default is null?
+## 为什么没有默认嵌套状态是null？
 
-As it was mentioned previously, by default tile without nesting sets it's value to null. While it is possible to set it to the typical data structure (for async tile, where we have metadata):
+如前所述，默认情况下，没有嵌套的tile将其值设为null。 虽然可以将其设置为典型的数据结构（对于异步tile，我们有元数据）：
 
 ```js
 {
@@ -109,6 +109,6 @@ As it was mentioned previously, by default tile without nesting sets it's value 
 }
 ```
 
-We don't do it absolutely _intentionally_. The problem is that we'd get inconsistency with data, which is taken from tiles with nesting (we cannot guess which values will be there! Of course, we could add intrinsic getter, but it will make things much more complicated.) – so if you access data by hand, then at least you'd get _almost_ consistent result (almost – with nesting, you'll have have to specify your fallback in case of no value).
+我们绝对不是_intentionally_这样做的。问题是我们会得到与嵌套tile相关的数据不一致（我们不能猜测哪些值会在那里！当然，我们可以添加内在的getter，但这会使事情变得更加复杂。）– 所以如果你手工访问数据，至少你会得到_almost_一致的结果（几乎 - 嵌套，你将不得不指定你的回退，如果没有值）。
 
-Once again, the recommended way to go is to use selectors, provided by tiles (and combined by `createSelectors` or `createEntities`).
+再一次，推荐的方法是使用selectors，由tile提供（并由`createSelectors`或`createEntities`组合）。
