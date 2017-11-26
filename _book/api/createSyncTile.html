@@ -1,0 +1,644 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>createSyncTile · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="createMiddleware.html" />
+    
+    
+    <link rel="prev" href="createTile.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"Kirk-Wang/cn-redux-tiles","types":["star","fork","watch"],"size":"large"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../original_readme.html">
+            
+                <a href="../original_readme.html">
+            
+                    
+                    读我，了解我是干啥的～
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../introduction/">
+            
+                <a href="../introduction/">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../introduction/Motivation.html">
+            
+                <a href="../introduction/Motivation.html">
+            
+                    
+                    动机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../introduction/Boilerplate.html">
+            
+                <a href="../introduction/Boilerplate.html">
+            
+                    
+                    Redux样板代码概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../introduction/Comparison.html">
+            
+                <a href="../introduction/Comparison.html">
+            
+                    
+                    与其他解决方案比较
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../introduction/Example.html">
+            
+                <a href="../introduction/Example.html">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="createTile.html">
+            
+                <a href="createTile.html">
+            
+                    
+                    createTile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.2" data-path="createSyncTile.html">
+            
+                <a href="createSyncTile.html">
+            
+                    
+                    createSyncTile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="createMiddleware.html">
+            
+                <a href="createMiddleware.html">
+            
+                    
+                    createMiddleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="createActions.html">
+            
+                <a href="createActions.html">
+            
+                    
+                    createActions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="createReducers.html">
+            
+                <a href="createReducers.html">
+            
+                    
+                    createReducers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="createSelectors.html">
+            
+                <a href="createSelectors.html">
+            
+                    
+                    createSelectors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="createEntities.html">
+            
+                <a href="createEntities.html">
+            
+                    
+                    createEntities
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../advanced/">
+            
+                <a href="../advanced/">
+            
+                    
+                    高级话题
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../advanced/integration.html">
+            
+                <a href="../advanced/integration.html">
+            
+                    
+                    与现有项目整合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../advanced/nesting.html">
+            
+                <a href="../advanced/nesting.html">
+            
+                    
+                    嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../advanced/selectors.html">
+            
+                <a href="../advanced/selectors.html">
+            
+                    
+                    选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../examples/README.md">
+            
+                <span>
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../examples/calculator.md">
+            
+                <span>
+            
+                    
+                    计算器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../examples/hacker-news-api.md">
+            
+                <span>
+            
+                    
+                    HackerNews API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >createSyncTile</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="createsynctile-api">CreateSyncTile API</h1>
+<p>CreateSyncTile&#x4E0E;<a href="createTile.html">createTile</a>&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x4E0D;&#x63D0;&#x4F9B;&#x5F02;&#x6B65;&#x529F;&#x80FD;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5B83;&#x6709;&#x70B9;&#x7B80;&#x5355; - &#x6CA1;&#x6709;&#x7F13;&#x5B58;&#xFF0C;&#x53EA;&#x6709;&#x4E24;&#x4E2A;&#x5E38;&#x91CF; - SET&#x548C;RESET&#x3002;</p>
+<p>&#x57FA;&#x672C;&#x7684;&#x540C;&#x6B65;tile&#x5C06;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createSyncTile } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+
+<span class="hljs-keyword">const</span> nofitications = createSyncTile({
+  type: [<span class="hljs-string">&apos;ui&apos;</span>, <span class="hljs-string">&apos;notifications&apos;</span>],
+  &#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x53EA;&#x662F;&#x5C06;params&#x4F20;&#x5165;store&#xFF0C;&#x90A3;&#x4E48;&#x60A8;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x5B83;&#x2014;&#x2014;&#x9ED8;&#x8BA4;&#x51FD;&#x6570;&#x6B63;&#x662F;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;
+  fn: ({ params }) =&gt; params,
+});
+</code></pre>
+<p>&#x56E0;&#x4E3A;&#x5728;&#x5F15;&#x64CE;&#x76D6;&#x4E0B;&#x6CA1;&#x6709;async&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784; &#x2013; &#x4ECE;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&#x5C06;&#x76F4;&#x63A5;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#xFF08;&#x5E76;&#x4ECE;&#x9009;&#x62E9;&#x5668;&#x7684;&#x51FD;&#x6570;&#x4E2D;&#x8FD4;&#x56DE;&#xFF09;&#x3002;</p>
+<p>Let&apos;s take a look at a little bit more extensive example:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createSyncTile } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+
+<span class="hljs-keyword">const</span> chooseParams = createSyncTile({
+  <span class="hljs-comment">// type&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x4E0E;`createTile`&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x2013;&#x5C06;&#x5D4C;&#x5957;&#x5728;store&#x4E2D;&#xFF0C;</span>
+  <span class="hljs-comment">// &#x5E76;&#x4E14;`createEntities`&#x5C06;&#x628A;&#x5B83;&#x653E;&#x5728;actions/selectors&#x4E2D;&#x7684;&#x8FD9;&#x4E2A;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E0B;</span>
+  type: [<span class="hljs-string">&apos;ui&apos;</span>, <span class="hljs-string">&apos;params&apos;</span>],
+
+  <span class="hljs-comment">// &#x800C;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x6267;&#x884C;&#x540C;&#x6B65;&#x64CD;&#x4F5C;&#x6765;&#x8FD4;&#x56DE;&#x4E00;&#x4E9B;&#x503C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;dispatch&#x5176;&#x4ED6;&#x7684;action&#xFF0C;&#x4F46;&#x8981;&#x5C0F;&#x5FC3;&#xFF0C;</span>
+  <span class="hljs-comment">// &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5C06;&#x5728;actions.ui.params&#x4E0B;&#x53EF;&#x7528;</span>
+  <span class="hljs-comment">// &#x56E0;&#x6B64;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x81EA;&#x52A8;&#x5173;&#x95ED;&#x901A;&#x77E5;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x8C03;&#x5EA6;&#x76F8;&#x540C;&#x7684;tile action&#xFF09;&#xFF0C;&#x6216;&#x53D1;&#x9001;&#x4E00;&#x4E9B;&#x8DDF;&#x8E2A; &#x2013; </span>
+  <span class="hljs-comment">// &#x5B83;&#x5F88;&#x5BB9;&#x6613;&#x53D1;&#x8D77;&#x4E00;&#x4E9B;race-conditions &#x2013; &#x5BF9;&#x4E8E;&#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x4F7F;&#x7528;&#x50CF;RxJS&#x6216;redux-saga&#x8FD9;&#x6837;&#x7684;&#x4E1C;&#x897F;</span>
+  fn: ({ params }) =&gt; {
+    <span class="hljs-keyword">return</span> params.data;
+  },
+  <span class="hljs-comment">// &#x6216;&#x8005;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x5BF9;&#x73B0;&#x6709;&#x6570;&#x636E;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;</span>
+  <span class="hljs-comment">// &#x7F16;&#x5199;&#x66F4;&#x591A;&#x7684;&#x58F0;&#x660E;&#x6027;&#x64CD;&#x4F5C;&#x53EF;&#x80FD;&#x662F;&#x6709;&#x7528;&#x7684;</span>
+  <span class="hljs-comment">// &#x5B83;&#x4EEC;&#x5177;&#x6709;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x7B7E;&#x540D;&#xFF0C;&#x5E76;&#x5C06;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5206;&#x53D1;&#x7ED9;tile;</span>
+  <span class="hljs-comment">// &#x5B83;&#x4EEC;&#x5C06;&#x5728;actions.ui.params.add&#x548C;actions.ui.params.remove&#x4E0B;&#x63D0;&#x4F9B;</span>
+  fns: {
+    add: ({ params, selectors, getState}) =&gt; {
+      <span class="hljs-keyword">const</span> list = selectors.notifications(getState(), params);
+      <span class="hljs-keyword">return</span> list.concat(params);
+    },
+    remove: ({ params, selectors, getState}) =&gt; {
+      <span class="hljs-keyword">const</span> list = selectors.notifications(getState(), params);
+      <span class="hljs-keyword">return</span> list.filter(({ id }) =&gt; id !== params.id);
+    },
+  },
+
+  <span class="hljs-comment">// &#x548C;`createTile`&#x4E00;&#x6837; - &#x72EC;&#x7ACB;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x4EEC;&#x5C06;&#x72EC;&#x7ACB;&#x5B58;&#x50A8;&#x5728;store&#x91CC;&#x9762;</span>
+  nesting: ({ type }) =&gt; [type],
+
+  <span class="hljs-comment">// &#x521D;&#x59CB;&#x72B6;&#x6001;&#x653E;&#x5165;reducer&#x3002; &#x5982;&#x679C;&#x5B58;&#x50A8;&#x5143;&#x7D20;&#x5217;&#x8868;&#xFF0C;</span>
+  <span class="hljs-comment">// &#x5E76;&#x4E14;&#x4E0D;&#x60F3;&#x68C0;&#x67E5;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x662F;&#x6570;&#x7EC4;&#x8FD8;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;</span>
+  <span class="hljs-comment">// &#x4F7F;&#x7528;&#x6B64;&#x5C5E;&#x6027;</span>
+  initialState: [],
+});
+</code></pre>
+<h2 id="&#x8303;&#x4F8B;">&#x8303;&#x4F8B;</h2>
+<p>&#x6211;&#x4EEC;&#x6765;&#x4E3A;todoMVC&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;tile&#x3002;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x6267;&#x884C;&#x5F88;&#x591A;&#x88AB;&#x89E6;&#x53D1;&#x901A;&#x77E5;&#x7684;&#x5217;&#x8868;&#x6E05;&#x5355;&#x3002;&#x4E3A;&#x4E86;&#x7B80;&#x5355;&#x8D77;&#x89C1;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x4F1A;&#x5728;&#x8FD9;&#x91CC;&#x5220;&#x9664;&#x5B83;&#x4EEC;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FC7;&#x6EE4;&#x6765;&#x8F7B;&#x677E;&#x5730;&#x6DFB;&#x52A0;&#x5B83;&#x4EEC;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createSyncTile } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> todosTile = createSyncTile({
+  type: [<span class="hljs-string">&apos;todos&apos;</span>, <span class="hljs-string">&apos;list&apos;</span>],
+  <span class="hljs-comment">// &#x4E3A;&#x4E86;&#x521B;&#x5EFA;&#x66F4;&#x591A;&#x7684;&#x58F0;&#x660E;&#x5F0F;&#x51FD;&#x6570;&#x540D;&#x79F0;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;fns&#x5C5E;&#x6027;&#x3002;</span>
+  <span class="hljs-comment">// &#x6765;&#x81EA;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6240;&#x6709;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x88AB;&#x9644;&#x52A0;&#x5230;&#x4E3B;action&#x4E0A;</span>
+  <span class="hljs-comment">// &#x6240;&#x4EE5;&#x4ED6;&#x4EEC;&#x5C06;&#x5728;actions.todos.list.%function%&#x4E0B;&#x88AB;&#x63D0;&#x4F9B;</span>
+  fns: {
+    <span class="hljs-comment">// &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5C06;&#x5728;actions.todos.list.add&#x4E0B;&#x53EF;&#x7528;</span>
+    add: ({ params, getData }) =&gt; {
+      <span class="hljs-comment">// getData&#x662F;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x503C;&#x7684;&#x7279;&#x6B8A;&#x51FD;&#x6570;</span>
+      <span class="hljs-comment">// &#x5B83;&#x76F8;&#x5F53;&#x4E8E;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</span>
+      <span class="hljs-comment">// const list = selectors.todos.list(getState());</span>
+      <span class="hljs-keyword">const</span> list = getData();
+      <span class="hljs-keyword">const</span> newItem = {
+        ...params,
+        completed: <span class="hljs-literal">false</span>,
+        id: <span class="hljs-built_in">Math</span>.random(),
+      };
+
+      <span class="hljs-keyword">return</span> list.concat(newItem);
+    },
+    <span class="hljs-comment">// &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5C06;&#x5728;actions.todos.list.remove&#x4E0B;&#x53EF;&#x7528;</span>
+    remove: ({ params, selectors, getState }) =&gt; {
+      <span class="hljs-keyword">const</span> list = selectors.todos.list(getState());
+      <span class="hljs-keyword">return</span> list.filter(item =&gt; item.id !== params.id);
+    },
+    <span class="hljs-comment">// &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5C06;&#x5728;actions.todos.list.toggle&#x4E0B;&#x53EF;&#x7528;</span>
+    toggle: ({ params, selectors, getState }) =&gt; {
+      <span class="hljs-keyword">const</span> list = selectors.todos.list(getState());
+      <span class="hljs-keyword">return</span> list.map(todo =&gt; todo.id === params.id
+        ? { ...todo, completed: !todo.completed }
+        : todo
+      );
+    }
+  },
+  <span class="hljs-comment">// &#x6211;&#x4EEC;&#x5C06;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x8868;&#x793A;&#x4E3A;[]&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x4E0D;&#x5FC5;&#x68C0;&#x67E5;&#x6570;&#x636E;&#x7684;&#x7C7B;&#x578B;&#xFF08;&#x6211;&#x4EEC;&#x786E;&#x4FE1;&#x5B83;&#x5C06;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF09;</span>
+  initialState: [],
+});
+</code></pre>
+<h2 id="&#x66F4;&#x591A;&#x4FE1;&#x606F;">&#x66F4;&#x591A;&#x4FE1;&#x606F;</h2>
+<ul>
+<li><a href="../advanced/nesting.html">Nesting</a></li>
+<li><a href="../advanced/selectors.html">Selectors</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="createTile.html" class="navigation navigation-prev " aria-label="Previous page: createTile">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="createMiddleware.html" class="navigation navigation-next " aria-label="Next page: createMiddleware">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"createSyncTile","level":"1.4.2","depth":2,"next":{"title":"createMiddleware","level":"1.4.3","depth":2,"path":"api/createMiddleware.md","ref":"./api/createMiddleware.md","articles":[]},"previous":{"title":"createTile","level":"1.4.1","depth":2,"path":"api/createTile.md","ref":"./api/createTile.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["github-buttons","livereload"],"pluginsConfig":{"github-buttons":{"repo":"Kirk-Wang/cn-redux-tiles","types":["star","fork","watch"],"size":"large"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/createSyncTile.md","mtime":"2017-11-21T15:09:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-26T05:42:49.449Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

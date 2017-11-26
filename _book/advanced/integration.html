@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>介绍 · GitBook</title>
+        <title>与现有项目整合 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -58,10 +58,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Motivation.html" />
+    <link rel="next" href="nesting.html" />
     
     
-    <link rel="prev" href="../original_readme.html" />
+    <link rel="prev" href="./" />
     
 
     <style>
@@ -127,9 +127,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="../introduction/">
             
-                <a href="./">
+                <a href="../introduction/">
             
                     
                     介绍
@@ -141,9 +141,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="Motivation.html">
+        <li class="chapter " data-level="1.3.1" data-path="../introduction/Motivation.html">
             
-                <a href="Motivation.html">
+                <a href="../introduction/Motivation.html">
             
                     
                     动机
@@ -154,9 +154,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="Boilerplate.html">
+        <li class="chapter " data-level="1.3.2" data-path="../introduction/Boilerplate.html">
             
-                <a href="Boilerplate.html">
+                <a href="../introduction/Boilerplate.html">
             
                     
                     Redux样板代码概述
@@ -167,9 +167,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="Comparison.html">
+        <li class="chapter " data-level="1.3.3" data-path="../introduction/Comparison.html">
             
-                <a href="Comparison.html">
+                <a href="../introduction/Comparison.html">
             
                     
                     与其他解决方案比较
@@ -180,9 +180,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Example.html">
+        <li class="chapter " data-level="1.3.4" data-path="../introduction/Example.html">
             
-                <a href="Example.html">
+                <a href="../introduction/Example.html">
             
                     
                     实例
@@ -308,9 +308,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="../advanced/">
+        <li class="chapter " data-level="1.5" data-path="./">
             
-                <a href="../advanced/">
+                <a href="./">
             
                     
                     高级话题
@@ -322,9 +322,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../advanced/integration.html">
+        <li class="chapter active" data-level="1.5.1" data-path="integration.html">
             
-                <a href="../advanced/integration.html">
+                <a href="integration.html">
             
                     
                     与现有项目整合
@@ -335,9 +335,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../advanced/nesting.html">
+        <li class="chapter " data-level="1.5.2" data-path="nesting.html">
             
-                <a href="../advanced/nesting.html">
+                <a href="nesting.html">
             
                     
                     嵌套
@@ -348,9 +348,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3" data-path="../advanced/selectors.html">
+        <li class="chapter " data-level="1.5.3" data-path="selectors.html">
             
-                <a href="../advanced/selectors.html">
+                <a href="selectors.html">
             
                     
                     选择器
@@ -441,7 +441,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >介绍</a>
+        <a href=".." >与现有项目整合</a>
     </h1>
 </div>
 
@@ -456,17 +456,60 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5728;&#x4F60;&#x5F00;&#x59CB;&#x4E4B;&#x524D;">&#x5728;&#x4F60;&#x5F00;&#x59CB;&#x4E4B;&#x524D;</h1>
-<p>&#x8FD9;&#x4E2A;&#x5E93;&#x4E0D;&#x9002;&#x5408;Redux&#x4E2D;&#x7684;&#x65B0;&#x624B;&#x4F7F;&#x7528; &#x2013; &#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x957F;&#x671F;&#x4F24;&#x5BB3;&#x4F60;;&#x6240;&#x4EE5;&#x4F60;&#x5E94;&#x8BE5;&#x5F88;&#x5BB9;&#x6613;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;redux&#x5B9E;&#x4F53; &#x2013; &#x5B58;&#x50A8;&#x4E00;&#x4E9B;&#x540C;&#x6B65;&#x6570;&#x636E;&#xFF0C;&#x4F60;&#x73B0;&#x5728;&#x5E94;&#x8BE5;&#x6709;&#x4EC0;&#x4E48;&#x529E;&#x6CD5;&#x6765;&#x5904;&#x7406;Redux&#x4E2D;&#x7684;&#x5F02;&#x6B65;&#x6D41;&#x3002;&#x5176;&#x80CC;&#x540E;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x79CD;&#x73B0;&#x6709;&#x6280;&#x672F;&#xFF0C;&#x4F60;&#x5C31;&#x6709;&#x53EF;&#x80FD;&#x76F8;&#x4FE1;&#x8FD9;&#x4E2A;&#x5E93;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x9B54;&#x529B;&#xFF0C;&#x800C;&#x5B83;&#x6839;&#x672C;&#x5C31;&#x6CA1;&#x6709;&#xFF01;&#x800C;&#x4E14;&#x4F60;&#x5E94;&#x8BE5;&#x80FD;&#x591F;&#x62FF;&#x8D77;&#x5B83;&#x7684;&#x4EFB;&#x4F55;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x4EE5;&#x9632;&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E9B;&#x5E38;&#x91CF;&#xFF0C;&#x6216;&#x8005;&#x4ECE;&#x521B;&#x5EFA;&#x7684;tile&#x624B;&#x4E2D;&#x62FF;&#x8D77;selector&#x3002;</p>
-<h2 id="&#x5185;&#x5BB9;">&#x5185;&#x5BB9;</h2>
-<p>&#x672C;&#x7AE0;&#x89E3;&#x91CA;&#x4E86;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x5E93;&#xFF0C;&#x4EE5;&#x53CA;&#x5B83;&#x80CC;&#x540E;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x6BD4;&#x8F83;&#x548C;&#x5C0F;&#x4F8B;&#x5B50;&#x3002;&#x4E0D;&#x8981;&#x628A;&#x5B83;&#x4F5C;&#x4E3A;&#x5B66;&#x4E60;Redux&#x6216;&#x5176;&#x4ED6;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x7684;&#x5408;&#x9002;&#x8D44;&#x6E90; &#x2013; &#x4E0D;&#x8981;&#x72B9;&#x8C6B;&#xFF0C;&#x4ED4;&#x7EC6;&#x9605;&#x8BFB;&#x4ED6;&#x4EEC;&#x7684;&#x5B98;&#x65B9;&#x6587;&#x6863;!&#x800C;&#x4E14;&#xFF0C;&#x5982;&#x679C;&#x6240;&#x6709;&#x8FD9;&#x4E00;&#x5207;&#x90FD;&#x6E05;&#x695A;&#xFF0C;&#x4E0D;&#x8981;&#x5BB3;&#x6015;&#x76F4;&#x63A5;&#x8FDB;&#x5165;<a href="../api/">API</a>&#x6216;<a href="../examples/README.md">examples</a>&#x3002;</p>
-<h2 id="toc">TOC</h2>
-<ul>
-<li><a href="Motivation.html">&#x52A8;&#x673A;</a></li>
-<li><a href="Boilerplate.html">Redux Boilerplate&#x6982;&#x8FF0;</a></li>
-<li><a href="Comparison.html">&#x5BF9;&#x6BD4;</a></li>
-<li><a href="Example.html">&#x4F8B;&#x5B50;</a></li>
-</ul>
+                                <h1 id="&#x4E0E;&#x73B0;&#x6709;&#x7684;redux-store&#x96C6;&#x6210;">&#x4E0E;&#x73B0;&#x6709;&#x7684;Redux store&#x96C6;&#x6210;</h1>
+<p>&#x5C3D;&#x7BA1;&#x5728;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;redux-tiles&#x5E94;&#x8BE5;&#x8DB3;&#x591F;&#x7528;&#x4E8E;&#x6574;&#x4E2A;redux store&#xFF0C;&#x4F46;&#x5B83;&#x6709;&#x4E00;&#x4E9B;&#x7F3A;&#x70B9;&#xFF08;&#x7279;&#x522B;&#x662F;&#x5728;&#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x4EA4;&#x4E92;&#x4E2D;&#xFF09;&#xFF0C;&#x4E5F;&#x8BB8;&#x60A8;&#x60F3;&#x5C06;&#x5176;&#x6DFB;&#x52A0;&#x5230;&#x73B0;&#x6709;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x6216;&#x8005;&#x5FC5;&#x987B;&#x4E0E;&#x53E6;&#x4E00;&#x4E2A;&#x5E93;&#x4ED6;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;reducer&#x5408;&#x5E76;&#x3002;&#x8FD9;&#x5E76;&#x4E0D;&#x96BE;&#xFF0C;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x505A;&#x66F4;&#x591A;&#x7684;&#x884C;&#x4E3A;&#x6765;&#x5B9E;&#x73B0;&#x5B83;&#x3002;</p>
+<h2 id="reducer">Reducer</h2>
+<p>&#x4F60;&#x5FC5;&#x987B;&#x505A;&#x7684;&#x7B2C;&#x4E00;&#x4EF6;&#x4E8B; &#xFF0D; <a href="http://redux.js.org/docs/recipes/reducers/UsingCombineReducers.html" target="_blank">&#x7ED3;&#x5408;reducer</a>&#x3002; &#x60A8;&#x4ECE;<a href="../api/createEntities.html">createEntities</a>&#x6216;<a href="../api/createReducers.html">createReducers</a>&#x521B;&#x5EFA;&#x7684;Reducer&#x5C06;&#x4E0D;&#x5728;&#x9876;&#x5C42; - &#x5B83;&#x5C06;&#x4F1A;&#x964D;&#x4F4E;&#x4E00;&#x7EA7;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x6307;&#x5B9A;&#x5B83;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x4EE5;&#x4FBF;&#x6240;&#x6709;&#x9009;&#x62E9;&#x5668;&#x90FD;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createEntities, createReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+<span class="hljs-keyword">import</span> tiles <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../tiles&apos;</span>;
+
+<span class="hljs-keyword">const</span> { reducer: reduxTilesReducer } = createEntities(tiles, <span class="hljs-string">&apos;redux_tiles&apos;</span>);
+<span class="hljs-comment">// or</span>
+<span class="hljs-keyword">const</span> reduxTilesReducer = createReducers(tiles);
+</code></pre>
+<p>&#x73B0;&#x5728;&#x6240;&#x6709;&#x7684;&#x9009;&#x62E9;&#x5668;&#x90FD;&#x4F1A;&#x77E5;&#x9053;&#xFF0C;&#x4E3A;&#x4E86;&#x627E;&#x5230;&#x6570;&#x636E;&#xFF0C;&#x4ED6;&#x4EEC;&#x5FC5;&#x987B;&#x66F4;&#x6DF1;&#x5165;&#x4E00;&#x5C42;&#x3002; &#x8BA9;&#x6211;&#x4EEC;&#x628A;&#x8FD9;&#x4E2A;reducer&#x4E0E;&#x5176;&#x4ED6;&#x7684;reducer&#x7ED3;&#x5408;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { combineReducers, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>;
+
+<span class="hljs-keyword">const</span> finalReducer = combineReducers({
+  ...otherReducers,
+  redux_tiles: reduxTilesReducer,
+});
+</code></pre>
+<p>&#x5C31;&#x8FD9;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x4E86;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x7ED9;<code>createStore</code>&#x51FD;&#x6570;&#x7684;reducer&#xFF0C;&#x4EE5;&#x53CA;&#x521D;&#x59CB;state&#x548C;&#x4E2D;&#x95F4;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createStore, applyMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>;
+<span class="hljs-keyword">import</span> { createMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+<span class="hljs-keyword">import</span> tiles <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../tiles&apos;</span>;
+
+<span class="hljs-keyword">const</span> { middleware } = createMiddleware(tiles);
+<span class="hljs-keyword">const</span> store = createStore(
+  finalReducer,
+  <span class="hljs-comment">// &#x6062;&#x590D;&#x5BA2;&#x6237;&#x7AEF;&#x4E0A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x7C7B;&#x4F3C;window.__ INITIAL_STATE__&#x7684;&#x4E1C;&#x897F;</span>
+  initialState,
+  applyMiddleware(middleware)
+);
+</code></pre>
+<h2 id="actions-and-selectors">Actions and Selectors</h2>
+<p>&#x5BF9;&#x4E8E;action&#x548C;selector&#xFF0C;&#x6211;&#x4EEC;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x771F;&#x7684;&#x505A;&#x4EFB;&#x4F55;&#x4E8B;&#x60C5; &#x2013; &#x5728;&#x6211;&#x4EEC;&#x5C06;&#x6B63;&#x786E;&#x7684;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x4F20;&#x9012;&#x7ED9;<code>createReducers</code>&#x6216;<code>createEntities</code>&#x540E;&#xFF0C;&#x5B83;&#x5C06;&#x4F7F;&#x9009;&#x62E9;&#x5668;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x3002;
+&#x884C;&#x52A8;&#x4E0D;&#x53D7;&#x5F71;&#x54CD;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x5B83;&#x4EEC;&#x6574;&#x5408;&#x5230;&#x66F4;&#x5927;&#x7684;action&#x548C;selector&#x5BF9;&#x8C61;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createEntities } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-tiles&apos;</span>;
+<span class="hljs-keyword">import</span> tiles <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../tiles&apos;</span>;
+
+<span class="hljs-keyword">const</span> {
+  actions: tilesActions,
+  selectors: tilesSelectors,
+  reducer: tilesReducer
+} = createEntities(tiles, <span class="hljs-string">&apos;redux_tiles&apos;</span>);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> actions = {
+  ...otherActions,
+  tiles: tilesActions,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> selectors = {
+  ...otherSelectors,
+  tiles: tilesSelectors,
+};
+</code></pre>
 
                                 
                                 </section>
@@ -494,12 +537,12 @@
 
             
                 
-                <a href="../original_readme.html" class="navigation navigation-prev " aria-label="Previous page: 读我，了解我是干啥的～">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 高级话题">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Motivation.html" class="navigation navigation-next " aria-label="Next page: 动机">
+                <a href="nesting.html" class="navigation navigation-next " aria-label="Next page: 嵌套">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -510,7 +553,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"介绍","level":"1.3","depth":1,"next":{"title":"动机","level":"1.3.1","depth":2,"path":"introduction/Motivation.md","ref":"./introduction/Motivation.md","articles":[]},"previous":{"title":"读我，了解我是干啥的～","level":"1.2","depth":1,"path":"original_readme.md","ref":"./original_readme.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["github-buttons","livereload"],"pluginsConfig":{"github-buttons":{"repo":"Kirk-Wang/cn-redux-tiles","types":["star","fork","watch"],"size":"large"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"introduction/README.md","mtime":"2017-11-20T16:53:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-26T05:42:49.449Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"与现有项目整合","level":"1.5.1","depth":2,"next":{"title":"嵌套","level":"1.5.2","depth":2,"path":"advanced/nesting.md","ref":"./advanced/nesting.md","articles":[]},"previous":{"title":"高级话题","level":"1.5","depth":1,"path":"advanced/README.md","ref":"./advanced/README.md","articles":[{"title":"与现有项目整合","level":"1.5.1","depth":2,"path":"advanced/integration.md","ref":"./advanced/integration.md","articles":[]},{"title":"嵌套","level":"1.5.2","depth":2,"path":"advanced/nesting.md","ref":"./advanced/nesting.md","articles":[]},{"title":"选择器","level":"1.5.3","depth":2,"path":"advanced/selectors.md","ref":"./advanced/selectors.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["github-buttons","livereload"],"pluginsConfig":{"github-buttons":{"repo":"Kirk-Wang/cn-redux-tiles","types":["star","fork","watch"],"size":"large"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/integration.md","mtime":"2017-11-26T05:41:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-26T05:42:49.449Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
