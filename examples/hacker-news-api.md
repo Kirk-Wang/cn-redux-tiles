@@ -53,28 +53,27 @@ export const itemsTile = createTile({
 export const itemsByPageTile = createTile({
   type: ['hn_api', 'pages'],
   fn: async ({ params: { type = 'topstories', pageNumber = 0, pageSize = 30 }, selectors, getState, actions, dispatch }) => {
-    // we can always fetch stories, they are cached, so if this type
-    // was already fetched, there will be no new request
+    // 我们总是可以抓取stories，缓存它们，所以如果这个类型已经被抓取了，就不会有新的请求
     const { data } = await dispatch(actions.hn_api.stories({ type }));
     const offset = pageNumber * pageSize;
     const end = offset + pageSize;
     const ids = data.slice(offset, end);
     
-    // download list of ids for given page
+    // 下载给定页面的ID列表
     await dispatch(actions.hn_api.items({ ids }));
     
-    // populate ids with real values
+    // 用实际的值填充id
     return ids.map(id => selectors.hn_api.item(getState(), { id }).data);
   },
-  // we can safely nest them this way, and be sure that individual items will be cached
-  // so, changing number of items on the page might not even require a single new request
-  nesting: ({ type = 'topstories', pageNumber = 0, pageSize = 50 }) => [type, pageSize, pageNumber],
+  // 我们可以以这种方式安全地嵌套它们，并确保单个项目将被缓存
+  // 因此，更改页面上的条目数字可能甚至不需要一个新的请求
+  nesting: ({ type = 'topstories', pageNumber = 0, pageSize = 50 }) => [type, pageNumber, pageSize],
 });
 ```
 
-The last tile contains main business logic for our application, but it does not contain any direct api request, so if in the future response for some endpoint will change, or we will have to do different requests to get the same data, we can change it only inside these small tiles (parsing data or dispatching other small tiles).
+最后一个tile包含我们应用程序的主要业务逻辑，但它不包含任何直接的API请求，所以如果将来某个端点的响应会改变，或者我们将不得不做不同的请求来获得相同的数据，那么我们只能在这些小tile（解析数据或者调度其他tile）内部改变它。
 
-Let's put it together now – we will need to create all entities, and then redux store with reducer and middleware.
+现在让我们把它放在一起 - 我们将需要创建所有的实体，然后用reducer和middleware来创建redux store。
 
 ```javascript
 import { createStore, applyMiddleware } from 'redux';
@@ -87,11 +86,10 @@ const tiles = [
   itemsByPageTile
 ];
 
-// we create store only from redux-tiles, so we don't have to specify
-// second argument, which is a namespace in the store
+// 我们只从redux-tiles中创建store，所以我们不必指定第二个参数，这是store中的一个名称空间
 const { actions, reducer, selectors } = createEntities(tiles);
 
-// we will need `waitTiles` later to wait for all requests
+// 稍后我们需要`waitTiles`来等待所有的请求
 const { middleware, waitTiles } = createMiddleware({ api, actions, selectors });
 
 const store = createStore(
@@ -100,21 +98,21 @@ const store = createStore(
 );
 ```
 
-And now we can download our front page with top stories!
+现在我们可以下载我们的头版新闻！
 
 ```javascript
-// download first page of topstories
+// 下载topstories的第一页
 store.dispatch(actions.hn_api.pages({ type: 'topstories' }));
 
-// wait all requests – here it is just a single one
+// 等待所有的请求 - 在这里只是一个单一的
 await app.waitTiles();
 
-// let's check that we downloaded 30 stories
+// 让我们来check我们下载了30个
 const { data } = app.selectors.hn_api.pages(store.getState(), { type: 'topstories' });
 assert(data.length, 30); // will be true!
 ```
 
-## Links to implementation
+## 实现链接
 
 - [complete code](https://github.com/Bloomca/redux-tiles/tree/master/examples/hacker-news-api)
 - [tiles code](https://github.com/Bloomca/redux-tiles/blob/master/examples/hacker-news-api/hn-tiles.js)
